@@ -65,20 +65,20 @@ class _ProductScreenState extends State<ProductScreen> {
                 child: Text('show all'),
                 value: FilterOptions.All,
               ),
-              PopupMenuItem(
-                value: 'nested item',
-                child: PopupMenuButton(
-                    onSelected: (value2) {
-                      print('mDebug: menu2 value = $value2');
-                    },
-                    icon: Icon(Icons.arrow_left, color: Colors.red),
-                    itemBuilder: (_) => [
-                          PopupMenuItem(
-                            child: Text('x'),
-                            value: 'x',
-                          ),
-                        ]),
-              )
+              // PopupMenuItem(
+              //   value: 'nested item',
+              //   child: PopupMenuButton(
+              //       onSelected: (value2) {
+              //         print('mDebug: menu2 value = $value2');
+              //       },
+              //       icon: Icon(Icons.arrow_left, color: Colors.red),
+              //       itemBuilder: (_) => [
+              //             PopupMenuItem(
+              //               child: Text('x'),
+              //               value: 'x',
+              //             ),
+              //           ]),
+              // )
             ],
           ),
           Consumer<CartModel>(

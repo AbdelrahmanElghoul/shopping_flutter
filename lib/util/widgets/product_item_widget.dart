@@ -46,14 +46,42 @@ class ProductItemWIdget extends StatelessWidget {
             ),
             // subtitle: Text('2'),
             trailing: IconButton(
-              icon: Icon(
-                Icons.shopping_cart,
-                color: AppColors.primaryIconColor,
-              ),
-              color: AppColors.primaryAccent,
-              onPressed: () =>
-                  cart.addItem(product.id, product.title, product.price),
-            ),
+                icon: Icon(
+                  Icons.shopping_cart,
+                  color: AppColors.primaryIconColor,
+                ),
+                color: AppColors.primaryAccent,
+                onPressed: () {
+                  cart.addItem(product.id, product.title, product.price);
+                  Scaffold.of(context).removeCurrentSnackBar();
+                  Scaffold.of(context).showSnackBar(SnackBar(
+                    // backgroundColor: Theme.of(context).primaryColor,
+                    content: Row(
+                      children: [
+                        Icon(
+                          Icons.check_circle,
+                          color: Colors.greenAccent,
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Text('added to cart'),
+                      ],
+                    ),
+                    action: SnackBarAction(
+                      label: 'Undo',
+                      onPressed: () {
+                        cart.removeSingleItem(product.id);
+                      },
+                    ),
+                    shape: ContinuousRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50),
+                      ),
+                    ),
+                  ));
+                }),
           ),
           child: Image.network(
             product.imageUrl,

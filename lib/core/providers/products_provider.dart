@@ -55,11 +55,28 @@ class ProductsModel with ChangeNotifier {
   // }
 
   addProduct(Product product) {
-    _productList.add(product);
+    Product prod = Product(
+        id: DateTime.now().toString(),
+        description: product.description,
+        imageUrl: product.imageUrl,
+        price: product.price,
+        title: product.title);
+    _productList.add(prod);
+    notifyListeners();
+  }
+
+  updateProduct(String id, Product product) {
+    final int index = _productList.indexWhere((p) => p.id == id);
+    _productList[index] = product;
     notifyListeners();
   }
 
   Product getProductById(String id) {
     return productList.firstWhere((iterator) => iterator.id == id);
+  }
+
+  void deleteProduct(String id) {
+    _productList.removeWhere((p) => p.id == id);
+    notifyListeners();
   }
 }
